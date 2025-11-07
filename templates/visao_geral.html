@@ -1,0 +1,137 @@
+{% extends "base.html" %}
+
+{% block title %}Visão Geral - Dashboard Hemovigilância{% endblock %}
+{% block page_title %}Visão Geral - Métricas e Tendências{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row mb-4">
+        <div class="col-md-4 mb-3">
+            <div class="card h-100 border-left-primary">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <h6 class="text-muted text-uppercase mb-1">Total de Notificações</h6>
+                            <h3 class="mb-0">{{ "{:,}".format(metricas.total_notificacoes).replace(",", ".") }}</h3>
+                        </div>
+                        <div class="text-primary" style="font-size: 2.5rem;">
+                            <i class="fas fa-file-alt"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 mb-3">
+            <div class="card h-100 border-left-warning">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <h6 class="text-muted text-uppercase mb-1">Casos Anômalos</h6>
+                            <h3 class="mb-0">{{ "{:,}".format(metricas.total_anomalias).replace(",", ".") }}</h3>
+                        </div>
+                        <div class="text-warning" style="font-size: 2.5rem;">
+                            <i class="fas fa-exclamation-triangle"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 mb-3">
+            <div class="card h-100 border-left-danger">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <h6 class="text-muted text-uppercase mb-1">% de Anomalias</h6>
+                            <h3 class="mb-0">{{ "%.2f"|format(metricas.perc_anomalias) }}%</h3>
+                        </div>
+                        <div class="text-danger" style="font-size: 2.5rem;">
+                            <i class="fas fa-chart-pie"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header bg-primary text-white">
+                    <h5 class="mb-0">
+                        <i class="fas fa-chart-line me-2"></i> Tendência Temporal de Notificações
+                    </h5>
+                </div>
+                <div class="card-body">
+                    {% if timeline %}
+                        {{ timeline|safe }}
+                    {% else %}
+                        <div class="alert alert-info mb-0">
+                            <i class="fas fa-info-circle me-2"></i> Nenhum dado disponível para o período selecionado.
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6 mb-3">
+            <div class="card">
+                <div class="card-header bg-info text-white">
+                    <h5 class="mb-0">
+                        <i class="fas fa-lightbulb me-2"></i> Dicas de Análise
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <ul class="small mb-0">
+                        <li>Observe as tendências ao longo dos anos</li>
+                        <li>Identifique períodos com maior incidência de anomalias</li>
+                        <li>Compare dados entre diferentes regiões usando os filtros</li>
+                        <li>Exporte os dados para análises mais detalhadas</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 mb-3">
+            <div class="card">
+                <div class="card-header bg-secondary text-white">
+                    <h5 class="mb-0">
+                        <i class="fas fa-question-circle me-2"></i> Sobre os Dados
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <p class="small mb-2">
+                        Os dados apresentados são provenientes do <strong>Sistema Notivisa</strong> da ANVISA, 
+                        que registra eventos adversos relacionados ao ciclo do sangue.
+                    </p>
+                    <p class="small mb-0">
+                        <strong>Fonte:</strong> <a href="https://dados.gov.br/" target="_blank">Portal de Dados Abertos</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.border-left-primary {
+    border-left: 4px solid #007bff !important;
+}
+
+.border-left-warning {
+    border-left: 4px solid #ffc107 !important;
+}
+
+.border-left-danger {
+    border-left: 4px solid #dc3545 !important;
+}
+
+.card {
+    box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.15);
+}
+</style>
+{% endblock %}
+

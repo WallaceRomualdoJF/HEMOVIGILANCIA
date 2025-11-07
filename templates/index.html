@@ -1,0 +1,177 @@
+{% extends "base.html" %}
+
+{% block title %}Início - Dashboard Hemovigilância{% endblock %}
+{% block page_title %}Bem-vindo ao Dashboard de Hemovigilância{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row mb-4">
+        <div class="col-md-4 mb-3">
+            <div class="card h-100 border-left-primary">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <h6 class="text-muted text-uppercase mb-1">Total de Notificações</h6>
+                            <h3 class="mb-0">{{ "{:,}".format(metricas.total_notificacoes).replace(",", ".") }}</h3>
+                        </div>
+                        <div class="text-primary" style="font-size: 2.5rem;">
+                            <i class="fas fa-file-alt"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 mb-3">
+            <div class="card h-100 border-left-warning">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <h6 class="text-muted text-uppercase mb-1">Casos Anômalos</h6>
+                            <h3 class="mb-0">{{ "{:,}".format(metricas.total_anomalias).replace(",", ".") }}</h3>
+                        </div>
+                        <div class="text-warning" style="font-size: 2.5rem;">
+                            <i class="fas fa-exclamation-triangle"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 mb-3">
+            <div class="card h-100 border-left-danger">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <h6 class="text-muted text-uppercase mb-1">% de Anomalias</h6>
+                            <h3 class="mb-0">{{ "%.2f"|format(metricas.perc_anomalias) }}%</h3>
+                        </div>
+                        <div class="text-danger" style="font-size: 2.5rem;">
+                            <i class="fas fa-chart-pie"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mb-4">
+        <div class="col-12">
+            {% if request.args.get('sucesso_atualizacao') %}
+            <div class="alert alert-success" role="alert">
+                Dados atualizados com sucesso!
+            </div>
+            {% endif %}
+            {% if request.args.get('erro_atualizacao') %}
+            <div class="alert alert-danger" role="alert">
+                Erro ao atualizar os dados. Tente novamente ou verifique o log.
+                {% if request.args.get('mensagem_erro') %}
+                <br>Detalhes: {{ request.args.get('mensagem_erro') }}
+                {% endif %}
+            </div>
+            {% endif %}
+            <div class="card">
+                <div class="card-header bg-primary text-white">
+                    <h5 class="mb-0">
+                        <i class="fas fa-info-circle me-2"></i> Sobre o Dashboard
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <p>
+                        Este dashboard interativo apresenta dados de <strong>Hemovigilância em Pós-Mercado</strong> 
+                        fornecidos pela ANVISA (Agência Nacional de Vigilância Sanitária). Os dados incluem notificações 
+                        de eventos adversos relacionados ao ciclo do sangue e hemoderivados.
+                    </p>
+                    <p class="mb-0">
+                        <strong>Funcionalidades:</strong>
+                    </p>
+                    <ul class="mb-0">
+                        <li><strong>Visão Geral:</strong> Métricas principais e tendências temporais</li>
+                        <li><strong>Distribuições:</strong> Análises por região, tipo de evento e período</li>
+                        <li><strong>Mapa Brasil:</strong> Visualização geográfica interativa das notificações</li>
+                        <li><strong>Correlação:</strong> Análises comparativas entre variáveis</li>
+                        <li><strong>Dados:</strong> Acesso direto às tabelas e filtros detalhados</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6 mb-3">
+            <div class="card">
+                <div class="card-header bg-info text-white">
+                    <h5 class="mb-0">
+                        <i class="fas fa-filter me-2"></i> Como Usar os Filtros
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <p>
+                        Use o painel de filtros no menu lateral para refinar os dados:
+                    </p>
+                    <ol class="small">
+                        <li>Selecione os <strong>Estados (UF)</strong> desejados</li>
+                        <li>Escolha o <strong>Tipo de Evento</strong> a analisar</li>
+                        <li>Defina o período com os <strong>Anos</strong></li>
+                        <li>Clique em <strong>Aplicar Filtros</strong></li>
+                    </ol>
+                    <p class="small text-muted mb-0">
+                        Os gráficos e tabelas serão atualizados automaticamente com os dados filtrados.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 mb-3">
+            <div class="card">
+                <div class="card-header bg-success text-white">
+                    <h5 class="mb-0">
+                        <i class="fas fa-download me-2"></i> Exportar Dados
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <p>
+                        Você pode exportar os dados filtrados em formato CSV:
+                    </p>
+                    <ol class="small">
+                        <li>Aplique os filtros desejados</li>
+                        <li>Acesse a página <strong>Dados</strong></li>
+                        <li>Clique no botão <strong>Baixar CSV</strong></li>
+                    </ol>
+                    <p class="small text-muted mb-0">
+                        O arquivo será salvo com os dados filtrados em seu computador.
+                    </p>
+                    
+                    <hr>
+                    <h6 class="mt-3">Atualização da Base de Dados</h6>
+                    <p class="small text-muted">
+                        Última atualização dos dados: <strong>{{ ultima_atualizacao if ultima_atualizacao else 'N/A' }}</strong>
+                    </p>
+                    <a href="{{ url_for('atualizar_dados') }}" class="btn btn-primary btn-sm mt-2" id="btn-atualizar-dados">
+                        <i class="fas fa-sync-alt"></i> Atualizar Dados
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.border-left-primary {
+    border-left: 4px solid #007bff !important;
+}
+
+.border-left-warning {
+    border-left: 4px solid #ffc107 !important;
+}
+
+.border-left-danger {
+    border-left: 4px solid #dc3545 !important;
+}
+
+.card {
+    box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.15);
+}
+</style>
+{% endblock %}
+

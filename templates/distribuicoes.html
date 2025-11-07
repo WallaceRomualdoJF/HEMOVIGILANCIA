@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+
+{% block title %}Distribuições - Dashboard Hemovigilância{% endblock %}
+{% block page_title %}Distribuições - Análises Regionais e por Tipo de Evento{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row mb-4">
+        <div class="col-lg-6 mb-3">
+            <div class="card">
+                <div class="card-header bg-primary text-white">
+                    <h5 class="mb-0">
+                        <i class="fas fa-map-marker-alt me-2"></i> Notificações por UF
+                    </h5>
+                </div>
+                <div class="card-body">
+                    {% if grafico_uf %}
+                        {{ grafico_uf|safe }}
+                    {% else %}
+                        <div class="alert alert-info mb-0">
+                            <i class="fas fa-info-circle me-2"></i> Nenhum dado disponível para o período selecionado.
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-6 mb-3">
+            <div class="card">
+                <div class="card-header bg-success text-white">
+                    <h5 class="mb-0">
+                        <i class="fas fa-list me-2"></i> Distribuição por Tipo de Evento
+                    </h5>
+                </div>
+                <div class="card-body">
+                    {% if grafico_tipo %}
+                        {{ grafico_tipo|safe }}
+                    {% else %}
+                        <div class="alert alert-info mb-0">
+                            <i class="fas fa-info-circle me-2"></i> Nenhum dado disponível para o período selecionado.
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header bg-info text-white">
+                    <h5 class="mb-0">
+                        <i class="fas fa-chart-bar me-2"></i> Interpretação dos Gráficos
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h6>Notificações por UF</h6>
+                            <p class="small">
+                                Mostra a quantidade de notificações registradas em cada estado brasileiro. 
+                                Permite identificar regiões com maior volume de eventos adversos relacionados ao sangue.
+                            </p>
+                        </div>
+                        <div class="col-md-6">
+                            <h6>Distribuição por Tipo de Evento</h6>
+                            <p class="small">
+                                Apresenta a frequência de diferentes tipos de reações transfusionais e eventos adversos. 
+                                Útil para identificar quais tipos de eventos são mais comuns no período analisado.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.card {
+    box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.15);
+}
+</style>
+{% endblock %}
+

@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+
+{% block title %}Mapa Brasil - Dashboard Hemovigilância{% endblock %}
+{% block page_title %}Mapa Brasil - Visualização Geográfica Interativa{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header bg-primary text-white">
+                    <h5 class="mb-0">
+                        <i class="fas fa-map me-2"></i> Mapa Interativo de Notificações por Estado
+                    </h5>
+                </div>
+                <div class="card-body" style="height: 600px;">
+                    {% if mapa %}
+                        {{ mapa|safe }}
+                    {% else %}
+                        <div class="alert alert-info mb-0">
+                            <i class="fas fa-info-circle me-2"></i> Nenhum dado disponível para o período selecionado.
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6 mb-3">
+            <div class="card">
+                <div class="card-header bg-info text-white">
+                    <h5 class="mb-0">
+                        <i class="fas fa-mouse me-2"></i> Como Usar o Mapa
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <ul class="small mb-0">
+                        <li><strong>Hover:</strong> Passe o mouse sobre um estado para ver detalhes</li>
+                        <li><strong>Zoom:</strong> Use a roda do mouse ou os botões de zoom</li>
+                        <li><strong>Pan:</strong> Clique e arraste para mover o mapa</li>
+                        <li><strong>Cores:</strong> Tons mais escuros indicam maior número de notificações</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 mb-3">
+            <div class="card">
+                <div class="card-header bg-warning text-dark">
+                    <h5 class="mb-0">
+                        <i class="fas fa-info-circle me-2"></i> Interpretação
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <p class="small">
+                        O mapa mostra a distribuição geográfica das notificações de hemovigilância em pós-mercado 
+                        por estado. A intensidade da cor vermelha indica a concentração de eventos adversos registrados.
+                    </p>
+                    <p class="small mb-0">
+                        Use os filtros no menu lateral para analisar períodos específicos ou tipos de eventos.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.card {
+    box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.15);
+}
+</style>
+{% endblock %}
+

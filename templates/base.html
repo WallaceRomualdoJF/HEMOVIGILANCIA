@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="theme-color" content="#007bff">
+    <title>{% block title %}Dashboard Hemovigilância{% endblock %}</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    {% block extra_css %}{% endblock %}
+</head>
+<body>
+    <div class="d-flex" id="wrapper">
+        <nav class="sidebar bg-dark text-white" id="sidebar">
+            <div class="sidebar-header p-3 border-bottom">
+                <div class="d-flex align-items-center gap-2">
+                    <img src="{{ url_for('static', filename='images/' + logo_path) }}" alt="Logo" class="logo-sidebar">
+                    <h5 class="mb-0">Hemovigilância</h5>
+                </div>
+            </div>
+
+            <ul class="nav flex-column p-3">
+                <li class="nav-item mb-2">
+                    <a class="nav-link {% if request.endpoint == 'index' %}active{% endif %}" href="/">
+                        <i class="fas fa-home me-2"></i> Início
+                    </a>
+                </li>
+                <li class="nav-item mb-2">
+                    <a class="nav-link {% if request.endpoint == 'visao_geral' %}active{% endif %}" href="/visao-geral">
+                        <i class="fas fa-chart-line me-2"></i> Visão Geral
+                    </a>
+                </li>
+                <li class="nav-item mb-2">
+                    <a class="nav-link {% if request.endpoint == 'distribuicoes' %}active{% endif %}" href="/distribuicoes">
+                        <i class="fas fa-chart-bar me-2"></i> Distribuições
+                    </a>
+                </li>
+                <li class="nav-item mb-2">
+                    <a class="nav-link {% if request.endpoint == 'mapa_brasil' %}active{% endif %}" href="/mapa-brasil">
+                        <i class="fas fa-map me-2"></i> Mapa Brasil
+                    </a>
+                </li>
+                <li class="nav-item mb-2">
+                    <a class="nav-link {% if request.endpoint == 'correlacao' %}active{% endif %}" href="/correlacao">
+                        <i class="fas fa-project-diagram me-2"></i> Correlação
+                    </a>
+                </li>
+                <li class="nav-item mb-2">
+                    <a class="nav-link {% if request.endpoint == 'dados' %}active{% endif %}" href="/dados">
+                        <i class="fas fa-table me-2"></i> Dados
+                    </a>
+                </li>
+            </ul>
+
+            <hr class="my-3">
+
+            <div class="p-3 filter-section">
+                <h6 class="text-uppercase text-muted mb-3">Filtros</h6>
+                <form id="filter-form" class="filter-form">
+                    <div class="mb-3">
+                        <label class="form-label small">Estados (UF)</label>
+                        <select class="form-select form-select-sm" id="filter-ufs" name="ufs" multiple>
+                            <option value="">Selecione...</option>
+                        </select>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label small">Tipos de Eventos</label>
+                        <select class="form-select form-select-sm" id="filter-tipos" name="tipos_evento" multiple>
+                            <option value="">Selecione...</option>
+                        </select>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label small">Anos</label>
+                        <select class="form-select form-select-sm" id="filter-anos" name="anos" multiple>
+                            <option value="">Selecione...</option>
+                        </select>
+                    </div>
+
+                    <div class="d-grid gap-2">
+                        <button type="submit" class="btn btn-primary btn-sm" style="width: 100%;">
+                            <i class="fas fa-filter me-1"></i> Aplicar
+                        </button>
+                        <button type="reset" class="btn btn-secondary btn-sm" style="width: 100%;">
+                            <i class="fas fa-redo me-1"></i> Limpar
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <div class="p-3 border-top mt-auto">
+                <small class="text-muted d-block mb-2">
+                    <i class="fas fa-sync-alt me-1"></i> Última atualização:<br>
+                    <span id="ultima-atualizacao">{{ ultima_atualizacao or 'N/A' }}</span>
+                </small>
+            </div>
+        </nav>
+
+        <div class="main-content flex-grow-1">
+            
+            <header class="bg-white border-bottom p-3">
+                <div class="d-flex justify-content-between align-items-center">
+                    <h2 class="mb-0">{% block page_title %}Dashboard Hemovigilância{% endblock %}</h2>
+                    <button class="btn btn-outline-secondary" id="toggle-sidebar">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </header>
+
+            <main class="p-4">
+                {% block content %}{% endblock %}
+            </main>
+
+            <footer class="bg-light border-top p-3 mt-4">
+                <div class="container-fluid">
+                    <p class="text-muted small mb-0">
+                        Dashboard de Hemovigilância &copy; 2025 | 
+                        <a href="/api/status" target="_blank" class="text-muted text-decoration-none">Status da API - Wallace Santos</a>
+                    </p>
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    {% block extra_js %}{% endblock %}
+</body>
+</html>
+

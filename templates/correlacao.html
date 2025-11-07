@@ -1,0 +1,102 @@
+{% extends "base.html" %}
+
+{% block title %}Correlação - Dashboard Hemovigilância{% endblock %}
+{% block page_title %}Análise de Correlação - Padrões e Relações entre Variáveis{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header bg-primary text-white">
+                    <h5 class="mb-0">
+                        <i class="fas fa-project-diagram me-2"></i> Matriz de Correlação
+                    </h5>
+                </div>
+                <div class="card-body">
+                    {% if grafico_correlacao %}
+                        {{ grafico_correlacao|safe }}
+                    {% else %}
+                        <div class="alert alert-info mb-0">
+                            <i class="fas fa-info-circle me-2"></i> Nenhum dado disponível ou dados insuficientes para análise de correlação.
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6 mb-3">
+            <div class="card">
+                <div class="card-header bg-info text-white">
+                    <h5 class="mb-0">
+                        <i class="fas fa-graduation-cap me-2"></i> O que é Correlação?
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <p class="small">
+                        A correlação mede a força e a direção da relação linear entre duas variáveis. 
+                        Valores variam de -1 a +1:
+                    </p>
+                    <ul class="small mb-0">
+                        <li><strong>+1:</strong> Correlação positiva perfeita</li>
+                        <li><strong>0:</strong> Sem correlação</li>
+                        <li><strong>-1:</strong> Correlação negativa perfeita</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 mb-3">
+            <div class="card">
+                <div class="card-header bg-success text-white">
+                    <h5 class="mb-0">
+                        <i class="fas fa-lightbulb me-2"></i> Como Interpretar
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <p class="small">
+                        Cores mais quentes (amarelo/vermelho) indicam correlações mais fortes. 
+                        Cores mais frias (azul) indicam correlações mais fracas ou negativas.
+                    </p>
+                    <p class="small mb-0">
+                        Use esta análise para identificar padrões e relações entre diferentes variáveis 
+                        do conjunto de dados de hemovigilância.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12 mb-3">
+            <div class="card">
+                <div class="card-header bg-warning text-dark">
+                    <h5 class="mb-0">
+                        <i class="fas fa-chart-line me-2"></i> Análise Comparativa
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <p class="small">
+                        A matriz de correlação permite identificar:
+                    </p>
+                    <ul class="small mb-0">
+                        <li>Variáveis que tendem a aumentar ou diminuir juntas</li>
+                        <li>Padrões ocultos nos dados de hemovigilância</li>
+                        <li>Possíveis fatores de risco ou proteção</li>
+                        <li>Relações entre diferentes tipos de eventos adversos</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.card {
+    box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.15);
+}
+</style>
+{% endblock %}
+
