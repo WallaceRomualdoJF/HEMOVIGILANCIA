@@ -109,6 +109,9 @@ O arquivo `crawler_hemovigilancia.py` automatiza a atualização de dados:
 python3 crawler_hemovigilancia.py
 ```
 
+### Executar no Site
+Clique na aba Início, Exportar Dados e Atualizar Dados (Aguardar a atualização do Banco de Dados).
+
 ### Agendar Execução (Linux/Mac)
 Adicione à crontab para executar diariamente às 2 da manhã:
 ```bash
