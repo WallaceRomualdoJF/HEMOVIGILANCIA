@@ -165,7 +165,7 @@ Os dados de Hemovigilância são provenientes do Portal de Dados Abertos do Gove
 
 Abaixo está uma visualização do Dashboard de Hemovigilância, que demonstra as principais métricas e a interface interativa.
 
-![Dashboard Hemovigilância](data/Dashboard Hemovigilancia.jpg)
+![Dashboard Hemovigilância](https://raw.githubusercontent.com/WallaceRomualdoJF/HEMOVIGILANCIA/main/data/Dashboard%20Hemovigilancia.jpg)
 
 ---
 Desenvolvido por **Wallace Santos** e Orientado pelo **Tassio Serqueira**
