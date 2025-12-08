@@ -161,5 +161,11 @@ Os dados de Hemovigilância são provenientes do Portal de Dados Abertos do Gove
 *   **Conjunto de Dados:** [Hemovigilância em Pós-Mercado](https://dados.gov.br/dados/conjuntos-dados/hemovigilancia-em-pos-mercado)
 *   **URL Direta do CSV (Utilizada pelo Crawler):** `https://dados.anvisa.gov.br/dados/DADOS_ABERTOS_HEMOVIGILANCIA.csv`
 
+## 8. Dashboard Web para a visualização
+
+Abaixo está uma visualização do Dashboard de Hemovigilância, que demonstra as principais métricas e a interface interativa.
+
+![Dashboard Hemovigilância](data/Dashboard Hemovigilancia.jpg)
+
 ---
 Desenvolvido por **Wallace Santos** e Orientado pelo **Tassio Serqueira**
