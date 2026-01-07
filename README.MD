@@ -1,4 +1,5 @@
-# 🩸 Projeto de Hemovigilância — Análise e Dashboard Interativo
+# 🩸Projeto de Hemovigilância
+# 📊Análise e Dashboard Interativo
 
 Este projeto tem como objetivo analisar notificações de **Hemovigilância em Pós-Mercado**, identificando **padrões, anomalias e tendências regionais** relacionadas à segurança transfusional para o Trabalho de Conclusão de Curso em Bacharelado em Sistemas de Informação.
 
