@@ -1,4 +1,4 @@
-# 🩸 Projeto de Hemovigilância — Análise e Dashboard Interativo
+# 🩸 Sistema de Hemovigilância — Análise e Dashboard Interativo
 
 Este projeto tem como objetivo analisar notificações de **Hemovigilância em Pós-Mercado**, identificando **padrões, anomalias e tendências regionais** relacionadas à segurança transfusional para o Trabalho de Conclusão de Curso em Bacharelado em Sistemas de Informação.
 
@@ -154,14 +154,35 @@ A estrutura de arquivos segue o padrão de aplicações Flask:
 ---
 ```
 
-## 7. Fonte dos Dados
+## 7. Exemplos de Análises
+
+O sistema permite analisar:
+
+* Notificações por Estado
+* Notificações por Ano
+* Tipos de eventos adversos
+* Tendências temporais
+* Distribuição regional
+* Correlações entre variáveis
+
+## 8. Fonte dos Dados
 
 Os dados de Hemovigilância são provenientes do Portal de Dados Abertos do Governo Federal, sendo mantidos pela ANVISA.
 
 *   **Conjunto de Dados:** [Hemovigilância em Pós-Mercado](https://dados.gov.br/dados/conjuntos-dados/hemovigilancia-em-pos-mercado)
 *   **URL Direta do CSV (Utilizada pelo Crawler):** `https://dados.anvisa.gov.br/dados/DADOS_ABERTOS_HEMOVIGILANCIA.csv`
 
-## 8. Dashboard para a visualização
+## 9. Projeto Acadêmico
+
+Este projeto foi desenvolvido como:
+
+* Trabalho de Conclusão de Curso (TCC)
+* Faculdade: Centro Universitário Uniacademia
+* Curso: Sistemas de Informação
+* Área: Análise e Ciência de Dados
+* Aplicação: Saúde Pública
+
+## 10. Dashboard para a visualização
 
 Abaixo está uma visualização do Dashboard de Hemovigilância, que demonstra as principais métricas e a interface interativa.
 
